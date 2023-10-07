@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
+  <link rel="stylesheet" href="style.css">
+  <title>Frontend Mentor | Age calculator app</title>
+
+</head>
+<body>
+  <div class="container">
+    <!-- <div class="age-f">
+      <div class="day">DAY</div>
+      <div class="month">MONTH</div>
+      <div class="year">YEAR</div>
+    </div> -->
+    <div class="input-field">
+      <div class="check">
+        <span class="day">DAY</span>
+        <input type="text" id="box1">
+        <div class="error1"></div>
+      </div>
+      <div class="check">
+        <div class="month">MONTH</div>
+        <input type="text" id="box2">
+        <div class="error2"></div>
+      </div>
+      <div class="check">
+        <div class="year">YEAR</div>
+        <input type="text" id="box3">
+        <div class="error3"></div>
+      </div>
+    </div>
+    <div class="mid mar">
+      <div class="line"></div>
+      <button onclick="f()"><img src="assets/images/icon-arrow.svg"</button>
+    </div>
+    <div class="last">
+      <div class="years ">
+        <div class="number1">--</div>
+        <div class="text">years</div>
+      </div>
+      <div class="months">
+        <div class="number2">--</div>
+        <div class="text">months</div>
+      </div>
+      <div class="days">
+        <div class="number3">--</div>
+        <div class="text">days</div>
+      </div>
+    </div>
+  
+  </div>
+  <script>
+    function f(){
+    var day=document.getElementById('box1').value;
+    var month=document.getElementById('box2').value;
+    var year=document.getElementById('box3').value;
+    const date= new Date();
+    var err=0;
+      if(day>31 ){
+        document.querySelector('.error1').innerHTML="Must be a valid day";
+        document.querySelector('.number1').innerHTML="--";
+        document.querySelector('.number2').innerHTML="--";
+        document.querySelector('.number3').innerHTML="--";
+      }
+      if( month>12){
+        document.querySelector('.error2').innerHTML="Must be a valid Month";
+        document.querySelector('.number1').innerHTML="--";
+        document.querySelector('.number2').innerHTML="--";
+        document.querySelector('.number3').innerHTML="--";
+      }
+      if(year>date.getFullYear()){
+
+        document.querySelector('.error3').innerHTML="Must be in the past";
+        document.querySelector('.number1').innerHTML="--";
+        document.querySelector('.number2').innerHTML="--";
+        document.querySelector('.number3').innerHTML="--";
+      }
+      if(day.length==0){ 
+        document.querySelector('.error1').innerHTML="This field is required";
+      }
+      if(month.length==0){
+
+        document.querySelector('.error2').innerHTML="This field is required";
+      }
+      if(year.length===0){
+        document.querySelector('.error3').innerHTML="This field is required";
+      }
+      else {
+        const birthDate= new Date(year,month-1,day);
+        const timeDifference= date-birthDate;
+        const age=new Date(timeDifference);
+        const years=age.getUTCFullYear()-1970;
+        const months=age.getUTCMonth();
+        const days=age.getUTCDay()-1;
+        document.querySelector('.number1').innerHTML=`${years}`;
+        document.querySelector('.number2').innerHTML=`${months}`;
+        document.querySelector('.number3').innerHTML=`${days}`;
+
+      }
+    }
+
+  </script>
+</body>
+</html>
